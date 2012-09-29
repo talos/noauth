@@ -14,7 +14,7 @@ class WaitHandler(WebMessageHandler):
         """
         ms = float(self.get_argument('ms', 1000))
         gevent.sleep(ms / 1000)
-        self.set_body('noauth')
+        self.set_body(str(ms))
         return self.render()
 
 
