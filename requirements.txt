@@ -1,0 +1,7 @@
+dictshield==0.4.3
+py-bcrypt==0.2
+python-dateutil==2.1
+ujson==1.18
+gevent==0.13.7
+brubeck==0.4.0
+gunicorn==0.14.5
