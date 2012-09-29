@@ -5,6 +5,7 @@ from brubeck.connections import WSGIConnection
 from brubeck.request_handling import WebMessageHandler
 
 import gevent
+import time
 
 class WaitHandler(WebMessageHandler):
 
@@ -12,9 +13,13 @@ class WaitHandler(WebMessageHandler):
         """
         Do some "work" OAuthing.  Return.
         """
+        start = time.time()
         ms = float(self.get_argument('ms', 1000))
         gevent.sleep(ms / 1000)
-        self.set_body(str(ms))
+
+        duration = time.time() - start
+        self.set_body("<p>Requested %s</p><p>Actual: %s</p>" % (
+            str(ms), str(duration * 1000)))
         return self.render()
 
 
